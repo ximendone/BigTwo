@@ -15,6 +15,7 @@ try {
     // 使用 exec() ，因為沒有結果返回
     $conn->exec($sql);
     $conn = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
+    $conn->exec("SET CHARACTER SET utf8mb4");
 
     $sql = "CREATE TABLE user (
         username VARCHAR(15) NOT NULL, 

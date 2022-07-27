@@ -6,18 +6,17 @@ class Database
     private $host = DB_HOST;
     private $dbname = DB_NAME;
     private $user = DB_USER;
-    private $pass = DB_PASS;
+    private $password = DB_PASS;
 
-    private $db;
+    private $connection;
     private $result;
 
     public function __construct(){
-        $this->db=mysqli_connect($host,$user,$pass,$dbname);
+        $this->connection=new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->password);
     }
 
     public function query($query){
-        $this->result=mysqli_query($this->db,$query);
+        $result=$this->connection->query($query);
     }
-
 }
 ?>
