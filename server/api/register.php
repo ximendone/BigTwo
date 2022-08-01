@@ -1,7 +1,7 @@
 <?php
 require_once("../DB/db.php");
 $username=$_POST['username'];
-$password=$_POST['password'];
+$password=password_hash($_POST['password'], PASSWORD_DEFAULT);
 $email=$_POST['email'];
 $nickname=$_POST['nickname'];
 
@@ -15,7 +15,7 @@ if($username!=null && $password!=null && $email!=null && $nickname!=null) {
     } else {
         $query="INSERT INTO `user` (`username`, `password`, `nickname`, `email`, `gameid`) VALUES ('$username', '$password', '$nickname', '$email', null);";
         $db->query($query);
-        echo json_decode(array("success"=>true));
+        echo json_encode(array("success"=>true));
     }
 } else {
     echo json_encode(array("success"=>false,"reason"=>"data not enough"));
