@@ -20,3 +20,30 @@ if($username!=null && $password!=null && $email!=null && $nickname!=null) {
 } else {
     echo json_encode(array("success"=>false,"reason"=>"data not enough"));
 }
+/*
+傳入參數:
+{
+    username,
+    password,
+    email,
+    nickname
+}
+--------------------
+回傳:
+1.使用者名稱已經存在
+{
+    success:false,
+    reason:"username has been used"
+}
+---
+2.資料不齊全
+{
+    success:false,
+    reason:"data not enough"
+}
+---
+3.註冊完成
+{
+    success:true
+}
+*/
