@@ -3,10 +3,10 @@ require_once("../config/config.php");
 
 class Database
 {
-    private $host = DB_HOST;
-    private $dbname = DB_NAME;
-    private $user = DB_USER;
-    private $password = DB_PASS;
+    private $host = "127.0.0.1";
+    private $dbname = "bigtwo";
+    private $user = "root";
+    private $password = "";
 
     private $connection;
     private $result;
@@ -16,7 +16,10 @@ class Database
     }
 
     public function query($query){
-        $result=$this->connection->query($query);
+        $this->result=$this->connection->query($query);
+    }
+
+    public function getResult(){
+        return $this->result;
     }
 }
-?>
