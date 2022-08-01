@@ -12,6 +12,7 @@ $init = new Core();
         <title>BigTwoGame</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>   
         <style>
         body {
             background-image: url('images/background.png');
@@ -32,33 +33,35 @@ $init = new Core();
         .center {
             color: white;
         }
-        #register {
-            opacity: 1;
-        }
         </style>
     </head>
     <body>
-        <div class="center" id="register">
+        <div class="center" id="login">
             <form>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label textcolor">E-mail</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label textcolor">Username</label>
                   <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label textcolor">Password</label>
-                  <input type="password" class="form-control" id="password">
+                    <label for="exampleInputEmail1" class="form-label textcolor">Nickname</label>
+                    <input type="text" class="form-control" id="nickname" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label textcolor">E-mail</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label textcolor">Password Check</label>
-                    <input type="password" class="form-control" id="passwordcheck">
+                  <label for="exampleInputEmail1" class="form-label textcolor">Password</label>
+                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
                 </div>
-                <button type="submit" class="btn btn-primary">註冊</button>
-                <button type="submit" class="btn btn-primary">返回</button>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label textcolor">Password check</label>
+                  <input type="password" class="form-control" id="passwordcheck">
+                </div>
+                <input type="button" class="btn btn-primary" onclick="do_register()" value="註冊"></input>
+                <input type="button" class="btn btn-primary" onclick="to_index()" value="返回"></input>
             </form>
         </div>
     </body>
+    <script src="main.js"></script>
 </html>
