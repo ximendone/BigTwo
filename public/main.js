@@ -1,4 +1,4 @@
-var apiroot = "127.0.0.1/bigtwo/server/api/"
+var apiroot = "../server/api/"
 function to_register() {
     $("#login").empty();
     $("#login").append('<form><div class="mb-3"><label for="exampleInputEmail1" class="form-label textcolor">Username</label><input type="text" class="form-control" id="username" aria-describedby="emailHelp"></div><div class="mb-3"><label for="exampleInputEmail1" class="form-label textcolor">E-mail</label><input type="email" class="form-control" id="email" aria-describedby="emailHelp"></div><div class="mb-3"><label for="exampleInputEmail1" class="form-label textcolor">Password</label><input type="password" class="form-control" id="password" aria-describedby="emailHelp"></div><div class="mb-3"><label for="exampleInputPassword1" class="form-label textcolor">Password check</label><input type="password" class="form-control" id="passwordcheck"></div><input type="button" class="btn btn-primary" onclick="do_register()" value="註冊"></input><input type="button" class="btn btn-primary" onclick="to_index()" value="返回"></input></form>');
@@ -18,17 +18,18 @@ function do_register() {
     type: 'POST',
     url: apiroot + 'register.php',
     data: {
-        username: $("#username"). text(),
-        password: $("#password"). text(),
-        email: $("#email"). text(),
-        nickname: $("#nickname"). text()
+        username: $("#username"). val(),
+        password: $("#password"). val(),
+        email: $("#email"). val(),
+        nickname: "Nick"
     },
     success: function(response) {
+        console.log(response);
         var obj = jQuery.parseJSON(response);
         console.log(obj);
         if (obj.success == true){
             alert("註冊成功");
-            do_index();
+            to_index();
         }
         else {
             if (obj.reason == "username has been used"){alert("使用者名稱已經存在");}
