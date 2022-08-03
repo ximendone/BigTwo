@@ -9,8 +9,8 @@ if($username==null || $password==null || $username=="" || $password=="") {//驗�
 } else {
     //建立資料庫物件
     $db=new Database();
-    /////////////////sql語句:搜尋對應username的password以及執行獲取結果///////////////////////////
-    $query="SELECT `password` FROM `user` WHERE `username` = '$username'";
+    /////////////////sql語句:搜尋對應username的資訊以及執行獲取結果///////////////////////////
+    $query="SELECT * FROM `user` WHERE `username` = '$username'";
     $db->query($query);
     $res=$db->getResult();
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,8 @@ if($username==null || $password==null || $username=="" || $password=="") {//驗�
         if(password_verify($password,$res['password'])){//驗證密碼
             session_start();//建立登入的session
             $_SESSION['username']=$username;
-            echo json_encode(array("success"=>true));
+            $_SESSION['nickname']=$res['nickname'];
+            echo json_encode(array("success"=>true,"nickname"=>$res['nickname']));
         }else{
             echo json_encode(array("success"=>false,"reason"=>"data"));
         }
