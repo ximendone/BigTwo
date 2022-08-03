@@ -14,6 +14,18 @@ function to_index() {
 
 
 function do_register() {
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+      });
+    $("#login").validate({
+        rules:{
+            password: "required",
+            passwordcheck: {
+                equalTo: "#password"
+            }
+        }
+    })
     $.ajax({
     type: 'POST',
     url: apiroot + 'register.php',
