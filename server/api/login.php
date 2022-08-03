@@ -53,5 +53,6 @@ if($username==null || $password==null || $username=="" || $password=="") {//驗�
 3.登入成功
 {
     success:true
+    nickname:
 }
 */
