@@ -4,10 +4,9 @@ require_once("../DB/db.php");
 $username=$_POST['username'];
 $password=password_hash($_POST['password'], PASSWORD_DEFAULT);
 $email=$_POST['email'];
-$nickname=$_POST['nickname'];
 ///////////////////////////////////////////////
 
-if($username=="" || $password=="" || $email!="" || $nickname=="") {//確保前端送來的資料不為空字串
+if($username=="" || $password=="" || $email=="") {//確保前端送來的資料不為空字串
     ///請求發來的資烙不齊全
     echo json_encode(array("success"=>false,"reason"=>"data not enough"));
     }else {
