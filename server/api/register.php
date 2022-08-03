@@ -2,7 +2,7 @@
 require_once("../DB/db.php");
 //獲取請求發送的資料
 $username=$_POST['username'];
-$password=password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password=$_POST['password'];
 $email=$_POST['email'];
 ///////////////////////////////////////////////
 
@@ -20,13 +20,14 @@ if($username=="" || $password=="" || $email=="") {//確保前端送來的資料�
      $res=$db->getResult();
      //驗證資料是否可以拿來註冊成新成員
      if($res->rowCount()!=0) {//有同樣的username或是email被使用
-         if($res->fetch()['username']==$username)//驗證是否有一樣的username被使用
+        $password=password_hash($_POST['password'], PASSWORD_DEFAULT);
+        if($res->fetch()['username']==$username)//驗證是否有一樣的username被使用
              echo json_encode(array("success"=>false,"reason"=>"username has been used"));
-         else
+        else
              echo json_encode(array("success"=>false,"reason"=>"email has been used"));
      } else {
          /////////////////將新user加入資料庫//////////////////
-         $query="INSERT INTO `user` (`username`, `password`, `nickname`, `email`, `gameid`) VALUES ('$username', '$password', '$nickname', '$email', 0);";
+         $query="INSERT INTO `user` (`username`, `password`, `nickname`, `email`, `gameid`) VALUES ('$username', '$password', '$username', '$email', 0);";
          $db->query($query);
          echo json_encode(array("success"=>true));
          ////////////////////////////////////////////////////
