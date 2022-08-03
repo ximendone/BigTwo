@@ -8,30 +8,30 @@ $nickname=$_POST['nickname'];
 ///////////////////////////////////////////////
 
 if($username=="" || $password=="" || $email!="" || $nickname=="") {//確保前端送來的資料不為空字串
-    //建立資料庫物件
-    $db=new Database();
-    //sql語句
-    $query="SELECT * FROM `user` WHERE `username` = '$username' || `email`='$email' ";
-    //執行sql語法
-    $db->query($query);
-    //拿到執行結果
-    $res=$db->getResult();
-    //驗證資料是否可以拿來註冊成新成員
-    if($res->rowCount()!=0) {//有同樣的username或是email被使用
-        if($res->fetch()['username']==$username)//驗證是否有一樣的username被使用
-            echo json_encode(array("success"=>false,"reason"=>"username has been used"));
-        else
-            echo json_encode(array("success"=>false,"reason"=>"email has been used"));
-    } else {
-        /////////////////將新user加入資料庫//////////////////
-        $query="INSERT INTO `user` (`username`, `password`, `nickname`, `email`, `gameid`) VALUES ('$username', '$password', '$nickname', '$email', 0);";
-        $db->query($query);
-        echo json_encode(array("success"=>true));
-        ////////////////////////////////////////////////////
-    }
-} else {
-    //請求發來的資烙不齊全
+    ///請求發來的資烙不齊全
     echo json_encode(array("success"=>false,"reason"=>"data not enough"));
+    }else {
+     //建立資料庫物件
+     $db=new Database();
+     //sql語句
+     $query="SELECT * FROM `user` WHERE `username` = '$username' || `email`='$email' ";
+     //執行sql語法
+     $db->query($query);
+     //拿到執行結果
+     $res=$db->getResult();
+     //驗證資料是否可以拿來註冊成新成員
+     if($res->rowCount()!=0) {//有同樣的username或是email被使用
+         if($res->fetch()['username']==$username)//驗證是否有一樣的username被使用
+             echo json_encode(array("success"=>false,"reason"=>"username has been used"));
+         else
+             echo json_encode(array("success"=>false,"reason"=>"email has been used"));
+     } else {
+         /////////////////將新user加入資料庫//////////////////
+         $query="INSERT INTO `user` (`username`, `password`, `nickname`, `email`, `gameid`) VALUES ('$username', '$password', '$nickname', '$email', 0);";
+         $db->query($query);
+         echo json_encode(array("success"=>true));
+         ////////////////////////////////////////////////////
+     }
 }
 /*
 傳入參數:
